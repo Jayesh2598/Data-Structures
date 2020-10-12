@@ -93,4 +93,31 @@ public class MyLinkedList {
 		}
 		return wantedNode;
 	}
+
+	public void remove(INode node) {
+		if ((Integer) this.head.getKey() == node.getKey())
+			pop();
+		else if ((Integer) this.tail.getKey() == node.getKey())
+			popLast();
+		else {
+			INode tempNode = this.head;
+			while (tempNode.getNext() != null) {
+				if ((Integer) tempNode.getNext().getKey() == node.getKey()) {
+					INode tempNode1 = tempNode.getNext().getNext();
+					tempNode.setNext(tempNode1);
+				}
+				tempNode = tempNode.getNext();
+			}
+		}
+	}
+
+	public int size() {
+		INode tempNode = this.head;
+		int size = 1;
+		while (tempNode.getNext() != null) {
+			size++;
+			tempNode = tempNode.getNext();
+		}
+		return size;
+	}
 }
