@@ -75,11 +75,29 @@ public class MyLinkedList {
 
 	public void popLast() {
 		INode tempNode = this.head;
-		INode secondLastNode = this.head;
-		while (tempNode.getNext() != null) {
-			secondLastNode = tempNode;
+		while (tempNode.getNext().getNext() != null) {
 			tempNode = tempNode.getNext();
 		}
-		secondLastNode.setNext(null);
+		tempNode.setNext(null);
+	}
+
+	public int search(Integer value) {
+		INode tempNode = this.head;
+		int index = 0, loops = 0;
+		while (tempNode.getNext() != null) {
+			loops++;
+			if ((Integer) tempNode.getKey() == value)
+				break;
+			index++;
+			tempNode = tempNode.getNext();
+		}
+		if (loops > index)
+			return index;
+		else {
+			if ((Integer) this.tail.getKey() == value)
+				return index;
+			else
+				return -1;
+		}
 	}
 }
