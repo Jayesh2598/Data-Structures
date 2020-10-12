@@ -64,7 +64,7 @@ public class MyLinkedList {
 
 	public void insert(INode node, INode newNode) {
 		INode tempNode = node.getNext();
-		this.head.setNext(newNode);
+		node.setNext(newNode);
 		newNode.setNext(tempNode);
 	}
 
@@ -81,23 +81,16 @@ public class MyLinkedList {
 		tempNode.setNext(null);
 	}
 
-	public int search(Integer value) {
+	public INode search(Integer value) {
 		INode tempNode = this.head;
-		int index = 0, loops = 0;
+		INode wantedNode = null;
 		while (tempNode.getNext() != null) {
-			loops++;
-			if ((Integer) tempNode.getKey() == value)
+			if ((Integer) tempNode.getKey() == value) {
+				wantedNode = tempNode;
 				break;
-			index++;
+			}
 			tempNode = tempNode.getNext();
 		}
-		if (loops > index)
-			return index;
-		else {
-			if ((Integer) this.tail.getKey() == value)
-				return index;
-			else
-				return -1;
-		}
+		return wantedNode;
 	}
 }

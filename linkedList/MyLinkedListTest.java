@@ -95,8 +95,27 @@ public class MyLinkedListTest {
 		myLinkedList.add(myFirstNode);
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
-		int index = myLinkedList.search(30);
-		boolean result = (index == 1);
+		MyNode<Integer> node = (MyNode<Integer>) myLinkedList.search(30);
+		boolean result = node.equals(mySecondNode);
+		assertTrue(result);
+	}
+
+	@Test
+	public void givenNumber40AfterInsertionAfterNumber30ShouldShowLinkedListResult() {
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myFourthNode = new MyNode<>(70);
+		MyNode<Integer> myThirdNode = new MyNode<>(40);
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.add(myFirstNode);
+		myLinkedList.append(mySecondNode);
+		myLinkedList.append(myFourthNode);
+		myLinkedList.insert((MyNode<Integer>) myLinkedList.search(30), myThirdNode);
+		myLinkedList.printNodes();
+		boolean result = myLinkedList.getHead().equals(myFirstNode)
+				&& myLinkedList.getHead().getNext().equals(mySecondNode)
+				&& myLinkedList.getHead().getNext().getNext().equals(myThirdNode)
+				&& myLinkedList.getHead().getNext().getNext().getNext().equals(myFourthNode);
 		assertTrue(result);
 	}
 }
