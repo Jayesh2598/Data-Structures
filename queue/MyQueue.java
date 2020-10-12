@@ -18,4 +18,12 @@ public class MyQueue {
 		return myLinkedList.pop();
 	}
 
+	public void printQueue() {
+		myLinkedList.printNodes();
+	}
+
+	public INode peek() {
+		return myLinkedList.getHead();
+	}
+
 }
