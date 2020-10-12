@@ -2,8 +2,8 @@ package ds.linkedList;
 
 public class MyLinkedList {
 
-	private INode head;
-	private INode tail;
+	protected INode head;
+	protected INode tail;
 
 	public MyLinkedList() {
 		this.head = null;
