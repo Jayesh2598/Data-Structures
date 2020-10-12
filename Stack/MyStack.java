@@ -3,10 +3,10 @@ package ds.Stack;
 import ds.linkedList.*;
 
 public class MyStack {
-
+	
 	private MyLinkedList myLinkedList;
 
-	public MyStack() {
+	public MyStack () {
 		this.myLinkedList = new MyLinkedList();
 	}
 
@@ -21,4 +21,9 @@ public class MyStack {
 	public void printStack() {
 		myLinkedList.printNodes();
 	}
+
+	public INode pop() {
+		return myLinkedList.pop();
+	}
+	
 }
