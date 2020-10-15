@@ -1,8 +1,8 @@
 package ds.linkedList;
 
-public interface INode<T> {
-	T getKey();
-	void setKey(T key);
+public interface INode<K> {
+	K getKey();
+	void setKey(K key);
 	
 	INode getNext();
 	void setNext(INode next);

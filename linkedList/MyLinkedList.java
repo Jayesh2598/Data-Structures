@@ -1,6 +1,6 @@
 package ds.linkedList;
 
-public class MyLinkedList {
+public class MyLinkedList<K> {
 
 	protected INode head;
 	protected INode tail;
@@ -28,10 +28,10 @@ public class MyLinkedList {
 
 	public void printNodes() {
 		StringBuffer myNodes = new StringBuffer("Nodes sequence:\n");
-		INode tempNode = head;
+		INode tempNode = this.head;
 		while (tempNode.getNext() != null) {
 			myNodes.append(tempNode.getKey());
-			if (!(tempNode == tail))
+			if (!(tempNode == this.tail))
 				myNodes.append("->");
 			tempNode = tempNode.getNext();
 		}
@@ -68,9 +68,11 @@ public class MyLinkedList {
 		newNode.setNext(tempNode);
 	}
 
-	public void pop() {
+	public INode pop() {
+		INode popped = this.head;
 		INode tempNode = this.head.getNext();
 		this.head = tempNode;
+		return popped;
 	}
 
 	public void popLast() {
@@ -81,34 +83,30 @@ public class MyLinkedList {
 		tempNode.setNext(null);
 	}
 
-	public INode search(Integer value) {
+	public INode search(K key) {
 		INode tempNode = this.head;
-		INode wantedNode = null;
-		while (tempNode.getNext() != null) {
-			if ((Integer) tempNode.getKey() == value) {
-				wantedNode = tempNode;
-				break;
-			}
-			tempNode = tempNode.getNext();
-		}
-		return wantedNode;
-	}
-
-	public void remove(INode node) {
-		if ((Integer) this.head.getKey() == node.getKey())
-			pop();
-		else if ((Integer) this.tail.getKey() == node.getKey())
-			popLast();
-		else {
-			INode tempNode = this.head;
-			while (tempNode.getNext() != null) {
-				if ((Integer) tempNode.getNext().getKey() == node.getKey()) {
-					INode tempNode1 = tempNode.getNext().getNext();
-					tempNode.setNext(tempNode1);
-				}
+		while (tempNode != null) {
+			if (tempNode.getKey().equals(key)) {
+				return tempNode;
+			} else {
 				tempNode = tempNode.getNext();
 			}
 		}
+		return null;
+	}
+
+	public INode remove(INode node) {
+		INode tempNode = this.head;
+		INode prev = null;
+		while (tempNode.getNext() != null) {
+			if (tempNode.getKey().equals(node.getKey()))
+				break;
+			prev = tempNode;
+			tempNode = tempNode.getNext();
+		}
+		prev.setNext(tempNode.getNext());
+		tempNode.setNext(null);
+		return tempNode;
 	}
 
 	public int size() {

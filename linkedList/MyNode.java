@@ -1,21 +1,21 @@
 package ds.linkedList;
 
-public class MyNode<T> implements INode<T> {
-	private T key;
+public class MyNode<K> implements INode<K> {
+	private K key;
 	private INode next;
 
-	public MyNode(T key) {
+	public MyNode(K key) {
 		this.key = key;
 		this.next = null;
 	}
 
 	@Override
-	public T getKey() {
+	public K getKey() {
 		return key;
 	}
 	
 	@Override
-	public void setKey(T key) {
+	public void setKey(K key) {
 		this.key = key;
 	}
 	

@@ -63,7 +63,7 @@ public class MyLinkedListTest {
 		myLinkedList.add(myFirstNode);
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
-		myLinkedList.pop();
+		INode popped = myLinkedList.pop();
 		myLinkedList.printNodes();
 		boolean result = myLinkedList.getHead().equals(mySecondNode)
 				&& myLinkedList.getHead().getNext().equals(myThirdNode);
@@ -130,7 +130,7 @@ public class MyLinkedListTest {
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
 		myLinkedList.append(myFourthNode);
-		myLinkedList.remove(myLinkedList.search(40));
+		MyNode<Integer> deletedNode = (MyNode<Integer>) myLinkedList.remove(myLinkedList.search(40));
 		myLinkedList.printNodes();
 		boolean result = (myLinkedList.size() == 3);
 		assertTrue(result);
