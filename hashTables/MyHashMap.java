@@ -20,13 +20,12 @@ public class MyHashMap<K, V> {
 		if (mapNode == null) {
 			mapNode = new MyMapNode<>(key, value);
 			this.myLinkedList.append(mapNode);
-		}	
-		else
+		} else
 			mapNode.setValue(value);
 	}
-	
+
 	@Override
 	public String toString() {
-		return "MyHashMapNodes{"+myLinkedList.toString()+"}";
+		return "MyHashMapNodes{" + myLinkedList.toString() + "}";
 	}
 }

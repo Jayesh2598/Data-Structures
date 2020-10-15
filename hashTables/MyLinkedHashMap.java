@@ -6,7 +6,7 @@ import ds.linkedList.MyLinkedList;
 
 public class MyLinkedHashMap<K, V> {
 
-	private int noOfBuckets;
+	private final int noOfBuckets;
 	ArrayList<MyLinkedList<K>> myBucketArray;
 
 	public MyLinkedHashMap() {
@@ -16,7 +16,7 @@ public class MyLinkedHashMap<K, V> {
 			this.myBucketArray.add(null);
 	}
 
-	public V get(K key) {
+	public V getValueForKey(K key) {
 		int index = this.getBucketIndex(key);
 		MyLinkedList<K> myLinkedList = this.myBucketArray.get(index);
 		if (myLinkedList == null)
@@ -26,7 +26,7 @@ public class MyLinkedHashMap<K, V> {
 	}
 
 	private int getBucketIndex(K key) {
-		return Math.abs(key.hashCode()) % noOfBuckets;
+		return (Math.abs(key.hashCode())) % noOfBuckets;
 	}
 
 	public void add(K key, V value) {
@@ -42,5 +42,26 @@ public class MyLinkedHashMap<K, V> {
 			myLinkedList.append(mapNode);
 		} else
 			mapNode.setValue(value);
+//		System.out.println(value);
+	}
+
+	public MyMapNode<K, V> remove(K key) {
+
+		int index = this.getBucketIndex(key);
+		MyLinkedList<K> myLinkedList = this.myBucketArray.get(index);
+		if (myLinkedList == null)
+			return null;
+		MyMapNode<K, V> mapNode = (MyMapNode<K, V>) myLinkedList.search(key);
+		if (mapNode != null) {
+			myLinkedList.remove(mapNode);
+			return mapNode;
+		} else
+			return null;
+	}
+
+	public void print() {
+		for (MyLinkedList<K> i : myBucketArray) {
+			i.printNodes();
+		}
 	}
 }
